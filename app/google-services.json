@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "224728425712",
+    "project_id": "iensp-f1658",
+    "storage_bucket": "iensp-f1658.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224728425712:android:45c797f5761a0582264e35",
+        "android_client_info": {
+          "package_name": "com.example.iensp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG4NVRkFhpAWj4odVT0nJGYujIrk2div4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
