@@ -17,6 +17,7 @@ class LectorQr : AppCompatActivity() {
     var textonombrealu:TextView?=null
     lateinit var resultadonombre:String
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +28,7 @@ class LectorQr : AppCompatActivity() {
         textonombrealu=findViewById(R.id.txtnombredealumno)
 
         buttonqr?.setOnClickListener{ initScanner()}
+
 
 
     }
@@ -45,6 +47,8 @@ class LectorQr : AppCompatActivity() {
         if(result!=null){
            if(result.contents == null){
                Toast.makeText(this,"Cancelado",Toast.LENGTH_SHORT).show()
+
+
            }else{
                Toast.makeText(this,"El valor escaneado es ${result.contents}",Toast.LENGTH_SHORT).show()
                textonombrealu?.text=result.contents
