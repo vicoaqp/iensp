@@ -1,6 +1,9 @@
 package com.example.iensp
 
+<<<<<<< HEAD
 import android.content.Intent
+=======
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +12,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentTransaction
 import com.example.iensp.Fragmentos.FragmentEvento
 import com.example.iensp.Fragmentos.FragmentInicio
+<<<<<<< HEAD
 import com.example.iensp.activities.LectorQr
+=======
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
 import com.example.iensp.databinding.ActivityMainBinding
 import com.example.iensp.databinding.ActivityPrincipalBinding
 
@@ -23,7 +29,10 @@ class PrincipalActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         verFragmentInicio()
+<<<<<<< HEAD
         binding.FAB.setOnClickListener{goToScanner()}
+=======
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
 
         binding.BottomNV.setOnItemSelectedListener{item ->
             when(item.itemId){
@@ -41,8 +50,12 @@ class PrincipalActivity : AppCompatActivity() {
                 R.id.item_Cuenta->{
                     true
                 }
+<<<<<<< HEAD
                 R.id.item_Escaneo->{
                     goToScanner()
+=======
+                R.id.item_Anuncios->{
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
                     true
                 }
                 else->{
@@ -60,11 +73,14 @@ class PrincipalActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.FragmentL1.id,fragment,"FragmentInicio")
         fragmentTransaction.commit()
     }
+<<<<<<< HEAD
 
     private fun goToScanner(){
         val d = Intent(this, LectorQr::class.java)
         startActivity(d)
     }
+=======
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
     private fun verFragmentEvento(){
 
         val fragment = FragmentEvento()

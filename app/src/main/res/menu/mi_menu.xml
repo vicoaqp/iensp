@@ -12,8 +12,13 @@
         android:icon="@drawable/ic_evento"
         />
     <item
+<<<<<<< HEAD
         android:id="@+id/item_Escaneo"
         android:title="@string/item_Escaneo"
+=======
+        android:id="@+id/item_Contacto"
+        android:title="@string/item_Contacto"
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
         android:enabled="false"
         android:icon="@drawable/ic_contacto"
         />
@@ -23,8 +28,13 @@
         android:icon="@drawable/ic_cuenta"
         />
     <item
+<<<<<<< HEAD
         android:id="@+id/item_Contacto"
         android:title="@string/item_Contacto"
+=======
+        android:id="@+id/item_Anuncios"
+        android:title="@string/item_Anuncios"
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
         android:icon="@drawable/ic_anuncios"
         />
 

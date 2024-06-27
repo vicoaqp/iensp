@@ -24,6 +24,7 @@ class LectorQr : AppCompatActivity() {
     lateinit var resultadonombre:String
     val db =FirebaseFirestore.getInstance()
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

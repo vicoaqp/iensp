@@ -4,7 +4,11 @@
     <string name="item_inicio">Inicio</string>
     <string name="item_Eventos">Eventos</string>
     <string name="item_Contacto">Contacto</string>
+<<<<<<< HEAD
     <string name="item_Escaneo">ESCANEO</string>
+=======
+    <string name="item_Anuncios">Mis Anuncios</string>
+>>>>>>> 1133e46a88e0c992622e22ee7e888cb635e24087
     <string name="item_Cuenta">Cuenta</string>
 
     <string name="TituloRl">Titulo</string>
