@@ -9,13 +9,20 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.iensp.R
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import java.time.LocalDate
+import java.util.Date
 
 class LectorQr : AppCompatActivity() {
     var buttonqr:Button?= null
     var textonombrealu:TextView?=null
+    var VtextoDate:TextView?= null
+    var VTextoFecha:TextView?=null
+    var VTextDni:TextView?=null
     lateinit var resultadonombre:String
+    val db =FirebaseFirestore.getInstance()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +30,14 @@ class LectorQr : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_lector_qr)
 
+        VTextDni=findViewById(R.id.textViewDni)
         buttonqr= findViewById(R.id.buttonescaner)
         textonombrealu=findViewById(R.id.txtnombredealumno)
+        VtextoDate=findViewById(R.id.TextDate)
+        VTextoFecha=findViewById(R.id.TextHora)
 
         buttonqr?.setOnClickListener{ initScanner()}
+
 
 
     }
@@ -45,10 +56,20 @@ class LectorQr : AppCompatActivity() {
         if(result!=null){
            if(result.contents == null){
                Toast.makeText(this,"Cancelado",Toast.LENGTH_SHORT).show()
+
+
            }else{
                Toast.makeText(this,"El valor escaneado es ${result.contents}",Toast.LENGTH_SHORT).show()
-               textonombrealu?.text=result.contents
+               VTextDni?.text=result.contents
+               VtextoDate?.text= Date().toString()
 
+               val docRef=db.collection("alumnos")
+                   .whereEqualTo("DNI",VTextDni.toString())
+                   .get()
+                   .addOnSuccessListener { result ->
+                       
+
+                   }
 
 
            }
