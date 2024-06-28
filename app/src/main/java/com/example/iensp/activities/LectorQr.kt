@@ -9,20 +9,28 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.iensp.R
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Date
 
 class LectorQr : AppCompatActivity() {
     var buttonqr:Button?= null
+    var buttongrabar:Button?= null
     var textonombrealu:TextView?=null
     var VtextoDate:TextView?= null
-    var VTextoFecha:TextView?=null
+    var VTextoHora:TextView?=null
     var VTextDni:TextView?=null
+    var VTextGrado:TextView?= null
+
     lateinit var resultadonombre:String
     val db =FirebaseFirestore.getInstance()
+
+    var codigoaref:String?=""
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,14 +38,39 @@ class LectorQr : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_lector_qr)
 
+
         VTextDni=findViewById(R.id.textViewDni)
         buttonqr= findViewById(R.id.buttonescaner)
+        buttongrabar=findViewById(R.id.buttongrabard)
         textonombrealu=findViewById(R.id.txtnombredealumno)
         VtextoDate=findViewById(R.id.TextDate)
-        VTextoFecha=findViewById(R.id.TextHora)
+        VTextoHora=findViewById(R.id.TextHora)
+        VTextGrado=findViewById(R.id.TextGradoseccion)
 
+        buttongrabar?.setOnClickListener{gograbar()}
         buttonqr?.setOnClickListener{ initScanner()}
 
+
+
+    }
+    private fun gograbar(){
+
+            val userMap=   hashMapOf(
+            "dni" to VTextDni?.text,
+            "nombres" to textonombrealu?.text,
+                "grado" to VTextGrado?.text,
+                "fecha" to VtextoDate?.text,
+                "hora" to VTextoHora?.text
+        )
+        val docGrab=db.collection("asistencia")
+            .add(userMap)
+            .addOnSuccessListener {Docrefere ->
+                VTextDni?.text=""
+                textonombrealu?.text=""
+                VTextGrado?.text=""
+                VtextoDate?.text=""
+                VTextoHora?.text=""
+            }
 
 
     }
@@ -59,19 +92,30 @@ class LectorQr : AppCompatActivity() {
 
 
            }else{
-               Toast.makeText(this,"El valor escaneado es ${result.contents}",Toast.LENGTH_SHORT).show()
+               //Toast.makeText(this,"El valor escaneado es ${result.contents}",Toast.LENGTH_SHORT).show()
                VTextDni?.text=result.contents
-               VtextoDate?.text= Date().toString()
+
+               codigoaref= VTextDni.toString()
+
+               Toast.makeText(this,codigoaref.toString(),Toast.LENGTH_SHORT).show()
+
+
+               val formatter = SimpleDateFormat("MM-dd-yyyy")
+               VtextoDate?.text= formatter.format(Date())
+
+               val formatterh = SimpleDateFormat("hh:mm:ss a")
+               VTextoHora?.text = formatterh.format(Date())
+
 
                val docRef=db.collection("alumnos")
-                   .whereEqualTo("DNI",VTextDni.toString())
+                   .whereEqualTo("DNI",result.contents)
                    .get()
-                   .addOnSuccessListener { result ->
-                       
-
+                   .addOnSuccessListener {result ->
+                       for (document in result) {
+                            textonombrealu?.text=document.data.get("namelast").toString()
+                           VTextGrado?.text=document.data.get("gradoseccion").toString()
+                       }
                    }
-
-
            }
         }else{
 
